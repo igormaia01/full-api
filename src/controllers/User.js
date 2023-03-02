@@ -4,7 +4,7 @@ class UserController {
   async store(req, res) {
     try {
       const novoUser = await User.create(req.body);
-      return res.json(novoUser);
+      return res.status(201).json(novoUser);
     } catch (error) {
       return res.status(400).json({ errors: error.errors.map((e) => e.message) });
     }
@@ -13,7 +13,7 @@ class UserController {
   async index(req, res) {
     try {
       const users = await User.findAll();
-      return res.json(users);
+      return res.status(200).json(users);
     } catch (error) {
       console.log(error);
       return res.json(null);
